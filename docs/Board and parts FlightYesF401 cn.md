@@ -13,12 +13,12 @@
 * MCU: STM32F401CUU, 84MHz
 * IMU: MPU6050 (外接)
 * OSD: 无
-* Baro: BMP280-3.3 (外接, STD, CTR)
-* Compass: 无 (支持外接) 
-* Blackbox: 无，也不支持
+* 气压计: BMP280-3.3 (外接, STD, CTR)
+* 罗盘: 无 (支持外接) 
+* 黑匣子: 无，也不支持
 * VCP, UART1, UART2, UART6, SOFTSERIAL 一共5个串口
 * I2C SDA & SCL: 支持
-* LDO: RT9193 3.3V Max. 300mA
+* 电源降压芯片: RT9193 3.3V Max. 300mA
 * 电流计: 无，不支持
 * 6个PWM / DSHOT 兼容的舵机和电机输出
 * WS2812 Led 灯条 : 可能支持，未测试
