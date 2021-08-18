@@ -1,3 +1,5 @@
+# INAV STM32F401cuu branch from release_2.5.2 by afilez
+
 # INAV - navigation capable flight controller
 
 ## F3 based flight controllers
