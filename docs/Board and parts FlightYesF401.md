@@ -30,11 +30,11 @@ There is no photo to the board and parts.
 
 ## Firmware features
 
-For the STM32F401CCU MCU has 265KB flash only, and no SD card slot on the board. some features were removed:
+For the STM32F401CCU MCU has 256KB flash only, and no SD card slot on the board. some features were removed:
 
 * Blockbox
 * Navigation Points
-* Removed drivers/featues like: 
+* Removed drivers/features like: 
     ** IMUs but MPU6050, 
     ** Baros but BMP280.
     ** Compass but HMC5883, QMC5883, FAKE.

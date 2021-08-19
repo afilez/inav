@@ -44,6 +44,9 @@ TARGET_FLASH    := 512
 else ifeq ($(TARGET),$(filter $(TARGET), $(F427_TARGETS)))
 EXCLUDES        += stm32f4xx_fsmc.c
 TARGET_FLASH    := 1024
+else ifeq ($(TARGET),$(filter $(TARGET), $(F401_TARGETS)))
+EXCLUDES        += stm32f4xx_fsmc.c
+TARGET_FLASH    := 256
 else
 TARGET_FLASH    := 1024
 endif
@@ -147,6 +150,10 @@ STARTUP_SRC     = startup_stm32f411xe.s
 else ifeq ($(TARGET),$(filter $(TARGET),$(F405_TARGETS)))
 DEVICE_FLAGS    = -DSTM32F40_41xxx -DSTM32F405xx
 LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f405.ld
+STARTUP_SRC     = startup_stm32f40xx.s
+else ifeq ($(TARGET),$(filter $(TARGET),$(F401_TARGETS)))
+DEVICE_FLAGS    = -DSTM32F401xx
+LD_SCRIPT       = $(LINKER_DIR)/stm32_flash_f401.ld
 STARTUP_SRC     = startup_stm32f40xx.s
 else ifeq ($(TARGET),$(filter $(TARGET),$(F446_TARGETS)))
 DEVICE_FLAGS    = -DSTM32F446xx

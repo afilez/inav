@@ -21,6 +21,8 @@
 #define FLYESF401
 #endif
 
+#define FLASH_PAGE_SIZE ((uint32_t)0x4000)
+
 #ifndef HSE_VALUE
 #define HSE_VALUE 25000000
 #endif
@@ -31,22 +33,22 @@
 
 
 #define LED0                    PC13
-#define BEEPER                  PB14
-#define BEEPER_INVERTED
+#define BEEPER                  PA4
+//#define BEEPER_INVERTED
 //#define USE_I2C_PULLUP
 
 #define USE_I2C
-#define USE_I2C_DEVICE_EMULATED
-//#define I2C_DEVICE_EMULATED_SHARES_UART3
-#define SOFT_I2C
-#define SOFT_I2C_SCL            PB1 //TX3 pad
-#define SOFT_I2C_SDA            PB0 //RX3 pad
-#define I2C_EXT_BUS BUS_I2C_EMULATED
+// #define USE_I2C_DEVICE_EMULATED
+// //#define I2C_DEVICE_EMULATED_SHARES_UART3
+// #define SOFT_I2C
+// #define SOFT_I2C_SCL            PB1 //TX3 pad
+// #define SOFT_I2C_SDA            PB0 //RX3 pad
+// #define I2C_EXT_BUS BUS_I2C_EMULATED
 
-// #define USE_I2C_DEVICE_1
-// #define I2C1_SCL                PB1
-// #define I2C1_SDA                PB0
-// #define I2C_EXT_BUS BUS_I2C1
+#define USE_I2C_DEVICE_1
+#define I2C1_SCL                PB8
+#define I2C1_SDA                PB9
+#define I2C_EXT_BUS BUS_I2C1
 
 // #define USE_I2C_DEVICE_2
 // #define I2C_DEVICE_2_SHARES_UART3
@@ -82,9 +84,9 @@
 #define MPU6050_I2C_BUS         I2C_EXT_BUS
 #define MPU_ADDRESS             0x68
 
-#define USE_EXTI
-#define GYRO_INT_EXTI            PB10
-#define USE_MPU_DATA_READY_SIGNAL
+// #define USE_EXTI
+// #define GYRO_INT_EXTI            PB10
+// #define USE_MPU_DATA_READY_SIGNAL
 
 #define USE_MAG
 #define MAG_I2C_BUS             I2C_EXT_BUS
@@ -124,39 +126,25 @@
 
 #define FLYESF401_SS
 #define USE_SOFTSERIAL1
-#define SOFTSERIAL_1_RX_PIN     PB15     // shared with UART1 TX
-#define SOFTSERIAL_1_TX_PIN     PA8      // shared with UART1 TX
+#define SOFTSERIAL_1_RX_PIN     PB4     
+#define SOFTSERIAL_1_TX_PIN     PB5     
 
 
 
 //这里很有意思，换到PB6,PB7就串口就正常工作了（或是说关掉了DMA？）。
 #define USE_UART1
-#define UART1_RX_PIN            PA4
-#define UART1_TX_PIN            PA3
-#define INVERTER_PIN_UART1_RX   PA15
+#define UART1_RX_PIN            PA10
+#define UART1_TX_PIN            PA9
+//#define INVERTER_PIN_UART1_RX   PA15
 //#define UART1_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
-#if defined(OMNIBUSF4PRO)
-#define INVERTER_PIN_UART1_RX PC0 // PC0 has never been used as inverter control on genuine OMNIBUS F4 variants, but leave it as is since some clones actually implement it.
-#endif
 
 #define USE_UART2
-#define UART2_RX_PIN            PA2
-#define UART2_TX_PIN            PA1
+#define UART2_RX_PIN            PA3
+#define UART2_TX_PIN            PA2
 //#define UART2_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
 
-//UART6及反相PIN，F401上可能没有
-#define USE_UART6
-#define UART6_RX_PIN            PA10
-#define UART6_TX_PIN            PA9
-// #if defined(OMNIBUSF4V3)
-//   #define INVERTER_PIN_UART6_RX PC8
-//   #define INVERTER_PIN_UART6_TX PC9
-// #endif
-
-
-
-#define SERIAL_PORT_COUNT       4       // VCP ， USART1, USART2， USART6
+#define SERIAL_PORT_COUNT       4       // VCP ， USART1, USART2, SS
 
 
 // #define USE_SPI

@@ -3038,6 +3038,14 @@ static void cliStatus(char *cmdline)
     cliPrintLinef("  PCLK2  = %d MHz", clocks.PCLK2_Frequency / 1000000);
 #endif
 
+    cliPrintLinef("  SystemCoreClock = %d KHz", SystemCoreClock / 1000);
+    const uint32_t prescaler = ((SystemCoreClock / 50) + 0xffff) / 0x10000; /* rounding up */
+    cliPrintLinef("  prescaler= =  %d", prescaler);
+    const uint32_t timerHz = SystemCoreClock / prescaler;
+    const uint32_t period = timerHz / 50;
+    cliPrintLinef("  timeHz =  %d", timerHz);
+    cliPrintLinef("  period =  %d", period);
+
     cliPrintLinef("Sensor status: GYRO=%s, ACC=%s, MAG=%s, BARO=%s, RANGEFINDER=%s, OPFLOW=%s, GPS=%s",
         hardwareSensorStatusNames[getHwGyroStatus()],
         hardwareSensorStatusNames[getHwAccelerometerStatus()],

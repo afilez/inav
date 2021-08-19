@@ -19,7 +19,7 @@ endif
 # silently ignore if the file is not present. Allows for target specific.
 -include $(ROOT)/src/main/target/$(BASE_TARGET)/target.mk
 
-F4_TARGETS      = $(F405_TARGETS) $(F411_TARGETS) $(F427_TARGETS) $(F446_TARGETS)
+F4_TARGETS      = $(F405_TARGETS) $(F411_TARGETS) $(F427_TARGETS) $(F446_TARGETS) $(F401_TARGETS)
 F7_TARGETS      = $(F7X2RE_TARGETS) $(F7X5XE_TARGETS) $(F7X5XG_TARGETS) $(F7X5XI_TARGETS) $(F7X6XG_TARGETS)
 
 ifeq ($(filter $(TARGET),$(VALID_TARGETS)),)
@@ -35,6 +35,9 @@ TARGET_MCU 			:= STM32F303
 TARGET_MCU_GROUP 	:= STM32F3
 else ifeq ($(TARGET),$(filter $(TARGET), $(F405_TARGETS)))
 TARGET_MCU			:= STM32F405
+TARGET_MCU_GROUP 	:= STM32F4
+else ifeq ($(TARGET),$(filter $(TARGET), $(F401_TARGETS)))
+TARGET_MCU			:= STM32F401
 TARGET_MCU_GROUP 	:= STM32F4
 else ifeq ($(TARGET),$(filter $(TARGET), $(F411_TARGETS)))
 TARGET_MCU			:= STM32F411

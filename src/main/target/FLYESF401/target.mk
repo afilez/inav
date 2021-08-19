@@ -1,4 +1,7 @@
 F401_TARGETS   += $(TARGET)
+TARGET_MCU := STM32F401
+TARGET_MCU_GROUP := STM32F4
+FLASH_PAGE_SIZE := ((uint32_t)0x4000)
 FEATURES       = VCP ONBOARDFLASH
 
 # Hack for extern PWM servo support and compass_fake
