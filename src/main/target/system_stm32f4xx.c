@@ -351,9 +351,9 @@ uint32_t hse_value = HSE_VALUE;
      through STLINK MCO pin of STM32F103 microcontroller. The frequency cannot be changed
      and is fixed at 8 MHz.
      Hardware configuration needed for Nucleo Board:
-     – SB54, SB55 OFF
-     – R35 removed
-     – SB16, SB50 ON */
+     ï¿½ SB54, SB55 OFF
+     ï¿½ R35 removed
+     ï¿½ SB16, SB50 ON */
 /* #define USE_HSE_BYPASS */
 
 #if defined(USE_HSE_BYPASS)
@@ -372,6 +372,8 @@ uint32_t hse_value = HSE_VALUE;
 #if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F469_479xx) || defined (STM32F446xx) || defined (STM32F410xx) || defined (STM32F411xE)
     #if HSE_VALUE == 24000000
         #define PLL_M   24
+    #elif HSE_VALUE == 25000000
+        #define PLL_M   25        
     #elif HSE_VALUE == 16000000
         #define PLL_M   16
     #elif HSE_VALUE == 8000000
@@ -406,9 +408,9 @@ uint32_t hse_value = HSE_VALUE;
 
 #if defined(STM32F401xx)
 #define PLL_N      336
-/* SYSCLK = PLL_VCO / PLL_P */
+/* SYSCLK = PLL_VCO / PLL_P = 336 / 4 = 84MHz */
 #define PLL_P      4
-/* USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ */
+/* USB OTG FS, SDIO and RNG Clock =  PLL_VCO / PLLQ = 336/7 = 48MHz*/
 #define PLL_Q      7
 #endif /* STM32F401xx */
 
