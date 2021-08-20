@@ -16,7 +16,7 @@ There is no photo to the board and parts.
 * Baro: BMP280-3.3 (EXTERNAL, STD, CTR)
 * Compass: No 
 * Blackbox: No and will not support.
-* VCP, UART1, UART2, UART6, SOFTSERIAL
+* VCP, UART1, UART2, SOFTSERIAL
 * I2C SDA & SCL: Yes
 * LDO: RT9193 3.3V Max. 300mA
 * Current Sensor: No and not support.
@@ -27,6 +27,23 @@ There is no photo to the board and parts.
 * Button for BOOT(DFU) mode
 * Button for RESET
 * 1 Button on PA0 not used.
+
+## Pin defines
+ PIN    |optional           |used as    |Shared with    |
+ 3.3V   |                   |           |               |
+ PC13   |RTC_AF             |LED0       |               |
+ PC14   |RCC_OSC32_IN       |           |               |
+ PC15   |RCC_OSC32_OUT      |           |               |
+ PH0    |RCC_OSC32_IN       |           |               |
+ PH1    |RCC_OSC32_OUT      |           |               |
+ NRST   |                   |           |               |
+ VSS/VREF|                  |           |               |
+ VREF+  |                   |           |               |
+ PA0    |TIM2_CH1/TIM5_CH1/ADC1_IN0 |PPM RC IN  |       |
+ PA1    |TIM2_CH2/TIM5_CH2/ADC1_IN1 |           |       |
+ PA2    |TIM2_CH3/TIM5_CH3/TIM9_CH1/UART2_TX    |UAART2_TX   |   |
+
+
 
 ## Firmware features
 
