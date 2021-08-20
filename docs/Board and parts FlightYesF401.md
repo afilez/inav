@@ -29,11 +29,9 @@ There is no photo to the board and parts.
 * 1 Button on PA0 not used.
 
 ## Pin defines
-
-| PIN    | optional          | used as   | Shared with   |
+| PIN    |optional           |used as    |Shared with    |
+| ------ | ----------------- | --------- | ------------- |
 | 3.3V   |                   |           |               |
-
-
 | PC13   |RTC_AF             |LED0       |               |
 | PC14   |RCC_OSC32_IN       |           |               |
 | PC15   |RCC_OSC32_OUT      |           |               |
