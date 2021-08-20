@@ -55,7 +55,7 @@ There is no photo to the board and parts.
 | PB10  |TIM2_CH3/SPI_SCK/I2C2_SCL |    |               |
 | GND   |                   |           |               |
 | 5V    |                   |           |               |
-| ----- | ----------------- | --------- | ------------- |
+|       |                   |           |               |
 | PB9   |TIM4_CH4/I2C1_SDA  | I2C_SDA   |               |
 | PB8   |TIM4_CH3/I2C1_SCL  | I2C_SCL   |               |
 | PB7   |TIM4_CH2/I2C1_SDA/UART1_RX |Servo 3|          |
