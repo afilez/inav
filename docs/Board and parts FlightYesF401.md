@@ -29,20 +29,51 @@ There is no photo to the board and parts.
 * 1 Button on PA0 not used.
 
 ## Pin defines
-| PIN    |optional           |used as    |Shared with    |
-| ------ | ----------------- | --------- | ------------- |
-| 3.3V   |                   |           |               |
-| PC13   |RTC_AF             |LED0       |               |
-| PC14   |RCC_OSC32_IN       |           |               |
-| PC15   |RCC_OSC32_OUT      |           |               |
-| PH0    |RCC_OSC32_IN       |           |               |
-| PH1    |RCC_OSC32_OUT      |           |               |
-| NRST   |                   |           |               |
+
+| PIN   |optional           |used as    |Shared with    |
+| ----- | ----------------- | --------- | ------------- |
+| 3.3V  |                   |           |               |
+| PC13  |RTC_AF             |LED0       |               |
+| PC14  |RCC_OSC32_IN       |           |               |
+| PC15  |RCC_OSC32_OUT      |           |               |
+| PH0   |RCC_OSC32_IN       |           |               |
+| PH1   |RCC_OSC32_OUT      |           |               |
+| NRST  |                   |           |               |
 | VSS/VREF|                  |           |               |
-| VREF+  |                   |           |               |
-| PA0    |TIM2_CH1/TIM5_CH1/ADC1_IN0 |PPM RC IN  |       |
-| PA1    |TIM2_CH2/TIM5_CH2/ADC1_IN1 |           |       |
-| PA2    |TIM2_CH3/TIM5_CH3/TIM9_CH1/UART2_TX    |UAART2_TX   |   |
+| VREF+ |                   |           |               |
+| PA0   |TIM2_CH1/TIM5_CH1/ADC1_IN0 |PPM RC IN  |       |
+| PA1   |TIM2_CH2/TIM5_CH2/ADC1_IN1 |           |       |
+| PA2   |TIM2_CH3/TIM5_CH3/TIM9_CH1/UART2_TX    |UART2_TX   |   |
+| PA3   |TIM9_CH2/TIM5_CH4/TIM2_CH4/UART2_RX    |UART2_RX   |   |
+| PA4   |ADC1_IN4           |BEEPER     |               |
+| PA5   |TIM2_CH1/ADC1_IN5/SPI1_CLK |   |               |
+| PA6   |TIM3_CH1/ADC1_IN6/SPI1_MOSI    | Motor 1   |           |
+| PA7   |TIM3_CH2/ADC1_IN7/SPI1_MOSI    | Motor 2   |           |
+| PB0   |TIM3_CH3/ADC1_IN8  | Motor 3/Servo 1   |       |
+| PB1   |TIM3_CH4/ADC1_IN9  | Motor 4/Servo 2   |       |
+| PB2   |BOOT1              |                   |       |
+| PB10  |TIM2_CH3/SPI_SCK/I2C2_SCL |    |               |
+| GND   |                   |           |               |
+| 5V    |                   |           |               |
+| ----- | ----------------- | --------- | ------------- |
+| PB9   |TIM4_CH4/I2C1_SDA  | I2C_SDA   |               |
+| PB8   |TIM4_CH3/I2C1_SCL  | I2C_SCL   |               |
+| PB7   |TIM4_CH2/I2C1_SDA/UART1_RX |Servo 3|          |
+| PB6   |TIM4_CH1/I2C1_SCL/UART1_TX |Servo 4|          |
+| PB5   |TIM3_CH2/SPI1_MOSI | SOFT_SERIAL_RX    |       |
+| PB4   |TIM3_CH1/SPI1_MOSI/I2C3_SDA | SOFT_SERIAL_TX   |   |
+| PB3   |TIM2_CH2/SPI1_SCK/I2C2_SDA |   |               |
+| PA15  |TIM2_CH1           |           |               |
+| PA12  |USB_DP/UART6_RX    |USB_DP     |               |
+| PA11  |USB_DM/UART6_tX    |USB_DM     |               |
+| PA10  |TIM1_CH3/UART1_RX  |UART1_TX   |               |
+| PA9   |TIM1_CH2/UART1_TX  |UART1_RX   |               |
+| PA8   |TIM1_CH1/I2C3_SCL  |           |               |
+| PB15  |IM1_CH3N/SPI2_MOSI |           |               |
+| PB14  |TIM1_CH2N/SPI2_MOSI/ADC1 |     |               |
+| PB13  |TIM1_CH1N/SPI2_SCK |           |               |
+| PB12  |TIM1_BKN           |           |               |
+
 
 
 
