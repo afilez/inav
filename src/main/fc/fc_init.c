@@ -462,6 +462,9 @@ void init(void)
 
 #ifdef USE_PINIO
     pinioInit();
+    #ifdef PINIO1_HI_ON_BOOT
+    pinioSet(0,true);
+    #endif
 #endif
 
 #ifdef USE_PINIOBOX

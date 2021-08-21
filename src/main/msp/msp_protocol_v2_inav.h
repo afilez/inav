@@ -66,3 +66,7 @@
 #define MSP2_SET_PID                            0x2031
 
 #define MSP2_INAV_OPFLOW_CALIBRATION            0x2032
+
+//added set new heading by MSP #FLYESF401 and Customized 2.5.2 F4V3S
+#define MSP2_INAV_SET_MAG_HEADING              0x3000
+#define MSP2_INAV_SET_FORCE_RTH                 0x3001

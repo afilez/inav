@@ -125,17 +125,19 @@
 #define USE_UART_INVERTER
 
 #define FLYESF401_SS
+
 #define USE_SOFTSERIAL1
-#define SOFTSERIAL_1_RX_PIN     PB4     
-#define SOFTSERIAL_1_TX_PIN     PB5     
+#define SOFTSERIAL_1_RX_PIN     PB10     
+#define SOFTSERIAL_1_TX_PIN     PB10     
+
+#define USE_SOFTSERIAL2
+#define SOFTSERIAL_2_RX_PIN     PA8     
+#define SOFTSERIAL_2_TX_PIN     PA8  
 
 
-
-//这里很有意思，换到PB6,PB7就串口就正常工作了（或是说关掉了DMA？）。
 #define USE_UART1
 #define UART1_RX_PIN            PA10
 #define UART1_TX_PIN            PA9
-//#define INVERTER_PIN_UART1_RX   PA15
 //#define UART1_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
 #define USE_UART2
@@ -144,7 +146,12 @@
 //#define UART2_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
 
-#define SERIAL_PORT_COUNT       4       // VCP ， USART1, USART2, SS
+#define SERIAL_PORT_COUNT       5       // VCP ， USART1, USART2, SS1, SS2
+
+//PINIO TO SET TXS0108E
+#define USE_PINIO
+#define USE_PINIOBOX
+#define PINIO1_PIN              PA5
 
 
 // #define USE_SPI

@@ -22,6 +22,7 @@
 #include "drivers/pwm_mapping.h"
 #include "drivers/timer.h"
 #include "drivers/bus.h"
+#include "target.h"
 
 const timerHardware_t timerHardware[] = {
 
@@ -37,9 +38,10 @@ const timerHardware_t timerHardware[] = {
     DEF_TIM(TIM1,  CH2, PB6,  TIM_USE_MC_MOTOR | TIM_USE_MC_SERVO | TIM_USE_FW_SERVO,                0, 0), // S6_OUT
 
 
-#if (defined(OMNIBUSF4PRO) || defined(OMNIBUSF4V3)) && !defined(OMNIBUSF4PRO_LEDSTRIPM5)
-    DEF_TIM(TIM4,  CH1, PA6,  TIM_USE_LED,                                                           0, 0), // LED strip for F4 V2 / F4-Pro-0X and later (RCD_CS for F4)
-#endif
+    #ifdef FLYESF401_SS
+    DEF_TIM(TIM2,  CH3, PB10,  TIM_USE_ANY,                                                           0, 0), // S7_OUT SOFTSERIAL_RX
+    DEF_TIM(TIM1,  CH1, PA8,   TIM_USE_ANY,                                                           0, 0), // S8_OUT SOFTSERIAL_TX
+    #endif
 };
 
 const int timerHardwareCount = sizeof(timerHardware) / sizeof(timerHardware[0]);
