@@ -90,6 +90,7 @@ void globalFunctionsProcess(int8_t functionId) {
                     GLOBAL_FUNCTION_FLAG_ENABLE(GLOBAL_FUNCTION_FLAG_OVERRIDE_SWAP_ROLL_YAW);
                 }
                 break;
+#if defined (USE_VTX_CONTROL)
             case GLOBAL_FUNCTION_ACTION_SET_VTX_POWER_LEVEL:
                 if (conditionValue && !previousValue) {
                     vtxDeviceCapability_t vtxDeviceCapability;
@@ -114,6 +115,7 @@ void globalFunctionsProcess(int8_t functionId) {
                     }
                 }
                 break;
+#endif
             case GLOBAL_FUNCTION_ACTION_INVERT_ROLL:
                 if (conditionValue) {
                     GLOBAL_FUNCTION_FLAG_ENABLE(GLOBAL_FUNCTION_FLAG_OVERRIDE_INVERT_ROLL);

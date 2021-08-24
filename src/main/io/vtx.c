@@ -43,6 +43,8 @@
 #include "io/vtx_string.h"
 #include "io/vtx_control.h"
 
+#if defined (USE_VTX_CONTROL)
+
 PG_REGISTER_WITH_RESET_TEMPLATE(vtxSettingsConfig_t, vtxSettingsConfig, PG_VTX_SETTINGS_CONFIG, 2);
 
 PG_RESET_TEMPLATE(vtxSettingsConfig_t, vtxSettingsConfig,
@@ -192,3 +194,4 @@ void vtxUpdate(timeUs_t currentTimeUs)
         currentSchedule = (currentSchedule + 1) % VTX_PARAM_COUNT;
     }
 }
+#endif

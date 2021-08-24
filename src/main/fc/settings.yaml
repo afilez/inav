@@ -2086,43 +2086,43 @@ groups:
         field: force_sw_blink
         type: bool
 
-  - name: PG_VTX_CONFIG
-    type: vtxConfig_t
-    headers: ["io/vtx_control.h"]
-    condition: USE_VTX_CONTROL
-    members:
-      - name: vtx_halfduplex
-        field: halfDuplex
-        type: bool
+  # - name: PG_VTX_CONFIG
+  #   type: vtxConfig_t
+  #   headers: ["io/vtx_control.h"]
+  #   condition: USE_VTX_CONTROL
+  #   members:
+  #     - name: vtx_halfduplex
+  #       field: halfDuplex
+  #       type: bool
 
-  - name: PG_VTX_SETTINGS_CONFIG
-    type: vtxSettingsConfig_t
-    headers: ["drivers/vtx_common.h", "io/vtx.h"]
-    members:
-      - name: vtx_band
-        field: band
-        min: VTX_SETTINGS_NO_BAND
-        max: VTX_SETTINGS_MAX_BAND
-      - name: vtx_channel
-        field: channel
-        min: VTX_SETTINGS_MIN_CHANNEL
-        max: VTX_SETTINGS_MAX_CHANNEL
-      - name: vtx_power
-        field: power
-        min: VTX_SETTINGS_MIN_POWER
-        max: VTX_SETTINGS_MAX_POWER
-      - name: vtx_low_power_disarm
-        field: lowPowerDisarm
-        table: vtx_low_power_disarm
-        type: uint8_t
-      - name: vtx_pit_mode_chan
-        field: pitModeChan
-        min: VTX_SETTINGS_MIN_CHANNEL
-        max: VTX_SETTINGS_MAX_CHANNEL
-      - name: vtx_max_power_override
-        field: maxPowerOverride
-        min: 0
-        max: 10000
+  # - name: PG_VTX_SETTINGS_CONFIG
+  #   type: vtxSettingsConfig_t
+  #   headers: ["drivers/vtx_common.h", "io/vtx.h"]
+  #   members:
+  #     - name: vtx_band
+  #       field: band
+  #       min: VTX_SETTINGS_NO_BAND
+  #       max: VTX_SETTINGS_MAX_BAND
+  #     - name: vtx_channel
+  #       field: channel
+  #       min: VTX_SETTINGS_MIN_CHANNEL
+  #       max: VTX_SETTINGS_MAX_CHANNEL
+  #     - name: vtx_power
+  #       field: power
+  #       min: VTX_SETTINGS_MIN_POWER
+  #       max: VTX_SETTINGS_MAX_POWER
+  #     - name: vtx_low_power_disarm
+  #       field: lowPowerDisarm
+  #       table: vtx_low_power_disarm
+  #       type: uint8_t
+  #     - name: vtx_pit_mode_chan
+  #       field: pitModeChan
+  #       min: VTX_SETTINGS_MIN_CHANNEL
+  #       max: VTX_SETTINGS_MAX_CHANNEL
+  #     - name: vtx_max_power_override
+  #       field: maxPowerOverride
+  #       min: 0
+  #       max: 10000
 
   - name: PG_PINIOBOX_CONFIG
     type: pinioBoxConfig_t

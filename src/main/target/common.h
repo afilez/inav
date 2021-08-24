@@ -109,7 +109,7 @@
 #define DASHBOARD_ARMED_BITMAP
 #define USE_OLED_UG2864
 
-#define USE_PWM_DRIVER_PCA9685
+
 
 #define USE_TELEMETRY_SIM
 #define USE_FRSKYOSD
@@ -132,11 +132,15 @@
 #define USE_TELEMETRY_SMARTPORT
 #define USE_TELEMETRY_CRSF
 #define USE_MSP_OVER_TELEMETRY
-#define NAV_FIXED_WING_LANDING
 #define USE_SERIALRX_SUMD
 #define USE_SERIALRX_SUMH
 #define USE_SERIAL_PASSTHROUGH
 #define USE_CMS
+//Enable VTX control
+#define USE_VTX_CONTROL
+#define USE_VTX_SMARTAUDIO
+#define USE_VTX_TRAMP
+#define USE_VTX_FFPV
 #else // FLASH_SIZE < 256
 #define LOG_LEVEL_MAXIMUM LOG_LEVEL_ERROR
 #endif
@@ -144,17 +148,18 @@
 #if (FLASH_SIZE > 128)
 
 #define USE_AUTOTUNE_FIXED_WING
-
+#define USE_PWM_DRIVER_PCA9685
 #define USE_STATS
-
+#define NAV_MAX_WAYPOINTS       60
 
 #define USE_GPS_PROTO_NMEA
 #define USE_GPS_PROTO_MTK
 #define NAV_GPS_GLITCH_DETECTION
+#define NAV_FIXED_WING_LANDING
 
 #ifndef STM32F401xx
 #define NAV_NON_VOLATILE_WAYPOINT_STORAGE
-#define NAV_MAX_WAYPOINTS       60
+
 #define USE_SERIALRX_JETIEXBUS
 #define USE_SERIALRX_XBUS
 #define USE_SERIALRX_CRSF
@@ -168,11 +173,7 @@
 #define USE_PWM_SERVO_DRIVER
 #define USE_RCDEVICE
 
-//Enable VTX control
-#define USE_VTX_CONTROL
-#define USE_VTX_SMARTAUDIO
-#define USE_VTX_TRAMP
-#define USE_VTX_FFPV
+
 
 #ifndef STM32F3 //F3 series does not have enoug RAM to support logic conditions
 #define USE_LOGIC_CONDITIONS

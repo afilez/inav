@@ -152,6 +152,7 @@
 #define USE_PINIO
 #define USE_PINIOBOX
 #define PINIO1_PIN              PA5
+#define PINIO1_HI_ON_BOOT
 
 
 // #define USE_SPI
@@ -230,8 +231,9 @@
 // Number of available PWM outputs
 #define MAX_PWM_OUTPUT_PORTS    16
 #define TARGET_MOTOR_COUNT      6
+#define USE_ESC_SENSOR
 // //#define USE_DSHOT
-// //#define USE_ESC_SENSOR
+
 
 #define TARGET_IO_PORTA (0xffff & ~(BIT(14)|BIT(13)))
 #define TARGET_IO_PORTB (0xffff & ~(BIT(2)))

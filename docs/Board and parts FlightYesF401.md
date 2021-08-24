@@ -38,7 +38,7 @@ There is no photo to the board and parts.
 | PC15  |RCC_OSC32_OUT      |           |               |
 | PH0   |RCC_OSC32_IN       |           |               |
 | PH1   |RCC_OSC32_OUT      |           |               |
-| NRST  |                   |           |               |
+| NRST  |                   |PINIO_OE(HI)       |       |
 | VSS/VREF|                  |           |               |
 | VREF+ |                   |           |               |
 | PA0   |TIM2_CH1/TIM5_CH1/ADC1_IN0 |PPM RC IN  |       |
@@ -46,11 +46,11 @@ There is no photo to the board and parts.
 | PA2   |TIM2_CH3/TIM5_CH3/TIM9_CH1/UART2_TX    |UART2_TX   |   |
 | PA3   |TIM9_CH2/TIM5_CH4/TIM2_CH4/UART2_RX    |UART2_RX   |   |
 | PA4   |ADC1_IN4           |BEEPER     |               |
-| PA5   |TIM2_CH1/ADC1_IN5/SPI1_CLK |PINIO_OE   |               |
-| PA6   |TIM3_CH1/ADC1_IN6/SPI1_MOSI    | Motor 1   |           |
-| PA7   |TIM3_CH2/ADC1_IN7/SPI1_MOSI    | Motor 2   |           |
-| PB0   |TIM3_CH3/ADC1_IN8  | Motor 3/Servo 1   |       |
-| PB1   |TIM3_CH4/ADC1_IN9  | Motor 4/Servo 2   |       |
+| PA5   |TIM2_CH1/ADC1_IN5/SPI1_CLK |   |               |
+| PA6   |TIM3_CH1/ADC1_IN6/SPI1_MOSI    | Servo 1   |           |
+| PA7   |TIM3_CH2/ADC1_IN7/SPI1_MOSI    | Servo 2   |           |
+| PB0   |TIM3_CH3/ADC1_IN8  | Motor 3/Servo 3   |       |
+| PB1   |TIM3_CH4/ADC1_IN9  | Motor 4/Servo 4   |       |
 | PB2   |BOOT1              |                   |       |
 | PB10  |TIM2_CH3/SPI_SCK/I2C2_SCL |SOFTSERIAL_2_TXRX |            |
 | GND   |                   |           |               |
@@ -58,8 +58,8 @@ There is no photo to the board and parts.
 |       |                   |           |               |
 | PB9   |TIM4_CH4/I2C1_SDA  | I2C_SDA   |               |
 | PB8   |TIM4_CH3/I2C1_SCL  | I2C_SCL   |               |
-| PB7   |TIM4_CH2/I2C1_SDA/UART1_RX |Servo 3|          |
-| PB6   |TIM4_CH1/I2C1_SCL/UART1_TX |Servo 4|          |
+| PB7   |TIM4_CH2/I2C1_SDA/UART1_RX |Motor 1|          |
+| PB6   |TIM4_CH1/I2C1_SCL/UART1_TX |Motor 2|          |
 | PB5   |TIM3_CH2/SPI1_MOSI |           |              |
 | PB4   |TIM3_CH1/SPI1_MOSI/I2C3_SDA|       |           |
 | PB3   |TIM2_CH2/SPI1_SCK/I2C2_SDA |       |           |
