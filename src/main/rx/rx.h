@@ -84,8 +84,11 @@ typedef enum {
 #define MAX_SUPPORTED_RC_PPM_CHANNEL_COUNT          16
 #define MAX_SUPPORTED_RC_CHANNEL_COUNT              18
 
+//HACK FOR IBUS and 8 channel receiver (it will set channel 7 & 8 to value 0 while lost singnal)
+//HACK NON_AUX_CHANNEL_COUNT from 4 to 8
 #define NON_AUX_CHANNEL_COUNT 4
-#define MAX_AUX_CHANNEL_COUNT (MAX_SUPPORTED_RC_CHANNEL_COUNT - NON_AUX_CHANNEL_COUNT)
+#define MON_AUX_IBUS_CHANNEL_COUNT 8
+#define MAX_AUX_CHANNEL_COUNT (MAX_SUPPORTED_RC_CHANNEL_COUNT - NON_AUX_CHANNEL_COUNT )
 
 extern const char rcChannelLetters[];
 

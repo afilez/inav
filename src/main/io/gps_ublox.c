@@ -805,7 +805,115 @@ STATIC_PROTOTHREAD(gpsConfigure)
         gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
         configureGalileo();
         ptWaitTimeout((_ack_state == UBX_ACK_GOT_ACK || _ack_state == UBX_ACK_GOT_NAK), GPS_CFG_CMD_TIMEOUT_MS);
-    }
+    }    
+
+    // // Set dynamic model
+    // switch (gpsState.gpsConfig->dynModel) {
+    //     case GPS_DYNMODEL_PEDESTRIAN:
+    //         configureNAV5(UBX_DYNMODEL_PEDESTRIAN, UBX_FIXMODE_AUTO);
+    //         break;
+    //     case GPS_DYNMODEL_AIR_1G:   // Default to this
+    //     default:
+    //         configureNAV5(UBX_DYNMODEL_AIR_1G, UBX_FIXMODE_AUTO);
+    //         break;
+    //     case GPS_DYNMODEL_AIR_4G:
+    //         configureNAV5(UBX_DYNMODEL_AIR_4G, UBX_FIXMODE_AUTO);
+    //         break;
+    // }
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK,GPS_CFG_CMD_TIMEOUT_MS );
+
+    // // Disable NMEA messages
+    // gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_GGA, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_GLL, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_GSA, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_GSV, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK,GPS_CFG_CMD_TIMEOUT_MS);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_RMC, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // configureMSG(MSG_CLASS_NMEA, MSG_NMEA_VGS, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // // Configure UBX binary messages
+    // gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
+
+    // if ((gpsState.gpsConfig->provider == GPS_UBLOX) || (gpsState.hwVersion < 70000)) {
+    //     configureMSG(MSG_CLASS_UBX, MSG_POSLLH, 1);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_STATUS, 1);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_SOL, 1);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_VELNED, 1);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_TIMEUTC, 10);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     // This may fail on old UBLOX units, advance forward on both ACK and NAK
+    //     configureMSG(MSG_CLASS_UBX, MSG_PVT, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK ||, GPS_CFG_CMD_TIMEOUT_MS _ack_state == UBX_ACK_GOT_NAK);
+    // }
+    // else {
+    //     configureMSG(MSG_CLASS_UBX, MSG_POSLLH, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK,GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_STATUS, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_SOL, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_VELNED, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_TIMEUTC, 0);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    //     configureMSG(MSG_CLASS_UBX, MSG_PVT, 1);
+    //     ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK), GPS_CFG_CMD_TIMEOUT_MS;
+    // }
+
+    // configureMSG(MSG_CLASS_UBX, MSG_SVINFO, 0);
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // // Configure data rate
+    // gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
+    // if ((gpsState.gpsConfig->provider == GPS_UBLOX7PLUS) && (gpsState.hwVersion >= 70000)) {
+    //     configureRATE(100); // 10Hz
+    // }
+    // else {
+    //     configureRATE(200); // 5Hz
+    // }
+    // ptWaitTimeout(_ack_state == UBX_ACK_GOT_ACK, GPS_CFG_CMD_TIMEOUT_MS);
+
+    // // Configure SBAS
+    // // If particular SBAS setting is not supported by the hardware we'll get a NAK,
+    // // however GPS would be functional. We are waiting for any response - ACK/NACK
+    // gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
+    // configureSBAS();
+    // ptWaitTimeout((_ack_state == UBX_ACK_GOT_ACK || _ack_state == UBX_ACK_GOT_NAK), GPS_CFG_CMD_TIMEOUT_MS);
+
+    // // Enable GALILEO
+    // if (gpsState.gpsConfig->ubloxUseGalileo && capGalileo) {
+    //     // If GALILEO is not supported by the hardware we'll get a NAK,
+    //     // however GPS would otherwise be perfectly initialized, so we are just waiting for any response
+    //     gpsSetProtocolTimeout(GPS_SHORT_TIMEOUT);
+    //     configureGalileo();
+    //     ptWaitTimeout((_ack_state == UBX_ACK_GOT_ACK || _ack_state == UBX_ACK_GOT_NAK), GPS_CFG_CMD_TIMEOUT_MS);
+    // }
 
     ptEnd(0);
 }
@@ -904,6 +1012,10 @@ STATIC_PROTOTHREAD(gpsProtocolStateThread)
             ptWaitTimeout((gpsState.hwVersion != 0), GPS_CFG_CMD_TIMEOUT_MS);
         } while(gpsState.autoConfigStep < GPS_VERSION_RETRY_TIMES && gpsState.hwVersion == 0);
 
+        //if get ubox version fail (some gnss not response)
+        if (gpsState.hwVersion == 0)
+            gpsState.hwVersion = 60000;
+
         // Configure GPS
         ptSpawn(gpsConfigure);
     }
@@ -933,10 +1045,10 @@ void gpsHandleUBLOX(void)
     gpsProtocolReceiverThread();
     gpsProtocolStateThread();
 
-    // If thread stopped - signal communication loss and restart
-    if (ptIsStopped(ptGetHandle(gpsProtocolReceiverThread)) || ptIsStopped(ptGetHandle(gpsProtocolStateThread))) {
-        gpsSetState(GPS_LOST_COMMUNICATION);
-    }
+    // // If thread stopped - signal communication loss and restart
+    // if (ptIsStopped(ptGetHandle(gpsProtocolReceiverThread)) || ptIsStopped(ptGetHandle(gpsProtocolStateThread))) {
+    //     gpsSetState(GPS_LOST_COMMUNICATION);
+    // }
 }
 
 #endif

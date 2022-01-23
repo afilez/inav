@@ -34,7 +34,7 @@
 
 #define LED0                    PC13
 #define BEEPER                  PA4
-//#define BEEPER_INVERTED
+// #define BEEPER_INVERTED
 //#define USE_I2C_PULLUP
 
 #define USE_I2C
@@ -48,7 +48,23 @@
 #define USE_I2C_DEVICE_1
 #define I2C1_SCL                PB8
 #define I2C1_SDA                PB9
+
+
+
+// //2022-01-22 added I2C2
+// #define USE_UART3
+// #define UART3_RX_PIN            PB3
+// #define UART3_TX_PIN            PB10
+
+#define USE_I2C_DEVICE_2
+#define I2C2_SCL                PB10
+#define I2C2_SDA                PB3
 #define I2C_EXT_BUS BUS_I2C1
+#define I2C_INT_BUS BUS_I2C1
+
+#define USE_BARO
+#define USE_BARO_BMP280
+#define BARO_I2C_BUS          I2C_INT_BUS
 
 // #define USE_I2C_DEVICE_2
 // #define I2C_DEVICE_2_SHARES_UART3
@@ -81,13 +97,10 @@
 
 #define USE_IMU_MPU6050
 #define IMU_MPU6050_ALIGN       CW180_DEG
-#define MPU6050_I2C_BUS         I2C_EXT_BUS
+#define MPU6050_I2C_BUS         I2C_INT_BUS
 #define MPU_ADDRESS             0x68
 
-// #define USE_EXTI
-// #define GYRO_INT_EXTI            PB10
-// #define USE_MPU_DATA_READY_SIGNAL
-
+// MAG leave on EXT I2C BUS (I2C2)
 #define USE_MAG
 #define MAG_I2C_BUS             I2C_EXT_BUS
 #define MAG_HMC5883_ALIGN       CW90_DEG
@@ -99,12 +112,7 @@
 
 // #define TEMPERATURE_I2C_BUS     I2C_EXT_BUS
 
-#define USE_BARO
-#define USE_BARO_BMP280
-//#define BMP280_SPI_BUS        BUS_SPI3
-//#define BMP280_CS_PIN         PB3 // v1
-// Support external barometers
-#define BARO_I2C_BUS          I2C_EXT_BUS
+
 
 //#define PITOT_I2C_BUS           I2C_EXT_BUS
 
@@ -122,23 +130,18 @@
 // #define USE_UART_INVERTER
 // #endif
 
-#define USE_UART_INVERTER
+// #define USE_UART_INVERTER
 
 #define FLYESF401_SS
-
 #define USE_SOFTSERIAL1
-#define SOFTSERIAL_1_RX_PIN     PB10     
-#define SOFTSERIAL_1_TX_PIN     PB10     
-
-#define USE_SOFTSERIAL2
-#define SOFTSERIAL_2_RX_PIN     PA8     
-#define SOFTSERIAL_2_TX_PIN     PA8  
+#define SOFTSERIAL_1_RX_PIN     PA8     
+#define SOFTSERIAL_1_TX_PIN     PA8     
 
 
 #define USE_UART1
 #define UART1_RX_PIN            PA10
 #define UART1_TX_PIN            PA9
-//#define UART1_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
+#define UART1_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
 #define USE_UART2
 #define UART2_RX_PIN            PA3
@@ -146,7 +149,7 @@
 //#define UART2_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
 
-#define SERIAL_PORT_COUNT       5       // VCP ， USART1, USART2, SS1, SS2
+#define SERIAL_PORT_COUNT       4       // VCP ， USART1, USART2, SS1
 
 //PINIO TO SET TXS0108E
 #define USE_PINIO
@@ -197,8 +200,8 @@
 // // #endif
 
 #define USE_ADC
-//#define ADC_CHANNEL_1_PIN               PA5
-//#define ADC_CHANNEL_2_PIN               PA6
+// #define ADC_CHANNEL_1_PIN               PA5
+// #define ADC_CHANNEL_2_PIN               PA6
 
 // // #ifdef DYSF4PRO
 // //     #define ADC_CHANNEL_3_PIN               PC3
@@ -212,12 +215,9 @@
 
 #define SENSORS_SET (SENSOR_ACC|SENSOR_MAG|SENSOR_BARO)
 
-// // #define USE_LED_STRIP
-// // #if (defined(OMNIBUSF4PRO) || defined(OMNIBUSF4V3)) && !defined(OMNIBUSF4PRO_LEDSTRIPM5)
-// //   #define WS2811_PIN                   PB6
-// // #else
-// //   #define WS2811_PIN                   PA1
-// // #endif
+#define USE_LED_STRIP
+#define WS2811_PIN                   PA1
+
 
 // #define DEFAULT_RX_TYPE         RX_TYPE_PPM
 // #define DISABLE_RX_PWM_FEATURE
@@ -244,4 +244,4 @@
 // #define CURRENT_METER_SCALE   265
 // #endif
 
-// #define PCA9685_I2C_BUS         I2C_EXT_BUS
+#define PCA9685_I2C_BUS         I2C_EXT_BUS

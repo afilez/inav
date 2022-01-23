@@ -72,7 +72,7 @@ static void i2cUnstick(IO_t scl, IO_t sda);
 #endif
 
 #ifndef I2C2_SDA
-#define I2C2_SDA PB11
+#define I2C2_SDA PB3
 #endif
 
 #ifdef STM32F4

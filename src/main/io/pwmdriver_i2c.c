@@ -12,6 +12,7 @@
 #define PWM_DRIVER_MAX_CYCLE 4
 
 static bool driverEnabled = false;
+static bool driverInited = false;
 static uint8_t driverImplementationIndex = 0;
 
 typedef struct {
@@ -34,12 +35,18 @@ bool isPwmDriverEnabled(void) {
     return driverEnabled;
 }
 
+bool isPwmDriverInited(void) {
+    return driverInited;
+}
+
 void pwmDriverSetPulse(uint8_t servoIndex, uint16_t length) {
     (pwmDrivers[driverImplementationIndex].writeFunction)(servoIndex, length);
 }
 
 void pwmDriverInitialize(void) {
+    driverInited = true;
     driverEnabled = (pwmDrivers[driverImplementationIndex].initFunction)();
+
 
     if (driverEnabled) {
         ENABLE_STATE(PWM_DRIVER_AVAILABLE);
@@ -51,6 +58,7 @@ void pwmDriverInitialize(void) {
 
 void pwmDriverSync(void) {
     if (!STATE(PWM_DRIVER_AVAILABLE)) {
+        pwmDriverInitialize ();
         return;
     }
 

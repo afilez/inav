@@ -520,6 +520,7 @@ void pwmServoPreconfigure(void)
             servoWritePtr = pwmServoWriteStandard;
             break;
 
+    //always init failed while boot.
 #ifdef USE_PWM_SERVO_DRIVER
         case SERVO_TYPE_SERVO_DRIVER:
             pwmDriverInitialize();

@@ -527,7 +527,7 @@ bool calculateRxChannelsAndUpdateFailsafe(timeUs_t currentTimeUs)
         // Apply invalid pulse value logic
         if (!isRxPulseValid(sample)) {
             sample = rcChannels[channel].data;   // hold channel, replace with old value
-            if ((currentTimeMs > rcChannels[channel].expiresAt) && (channel < NON_AUX_CHANNEL_COUNT)) {
+            if ((currentTimeMs > rcChannels[channel].expiresAt) && (channel < MON_AUX_IBUS_CHANNEL_COUNT)) {
                 rxFlightChannelsValid = false;
             }
         } else {
