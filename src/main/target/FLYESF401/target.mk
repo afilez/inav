@@ -10,6 +10,7 @@ FEATURES       = VCP ONBOARDFLASH
 TARGET_SRC = \
             drivers/accgyro/accgyro_mpu6050.c \
             drivers/barometer/barometer_bmp280.c \
+            drivers/barometer/barometer_bmp085.c \
             drivers/compass/compass_hmc5883l.c \
             drivers/compass/compass_qmc5883l.c \
             drivers/compass/compass_fake.c \
@@ -17,3 +18,4 @@ TARGET_SRC = \
             drivers/pitotmeter_adc.c \
             drivers/light_ws2811strip.c \
             common/time.c \
+            drivers/max7456.c

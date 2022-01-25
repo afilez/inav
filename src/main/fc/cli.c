@@ -95,6 +95,7 @@ extern uint8_t __config_end;
 #include "io/ledstrip.h"
 #include "io/osd.h"
 #include "io/serial.h"
+#include "io/pwmdriver_i2c.h"
 
 #include "fc/fc_msp_box.h"
 
@@ -3018,11 +3019,11 @@ static void cliStatus(char *cmdline)
             case SERVO_TYPE_SERVO_DRIVER:
                 #ifdef USE_PWM_SERVO_DRIVER
                     cliPrintLinef ("Using PCA9685 external I2C PWM driver.");
-                    if (isPwmDriverInited())
+                    if ((int)isPwmDriverInited())
                         cliPrintLinef ("PCA9685 external I2C PWM driver inited");
                     else
                         cliPrintLinef ("PCA9685 external I2C PWM driver not init yet");
-                    if (isPwmDriverEnabled()) {
+                    if ((int)isPwmDriverEnabled()) {
                         cliPrintLinef ("PCA9685 external I2C PWM driver enabled");
                         if (!STATE(PWM_DRIVER_AVAILABLE)) 
                             cliPrintLinef ("PCA9685 external I2C PWM driver unavailable");

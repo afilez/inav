@@ -27,8 +27,11 @@
 #define HSE_VALUE 25000000
 #endif
 
-
-#define TARGET_BOARD_IDENTIFIER "FY40"
+#ifdef FLYESF401_4IN1
+    #define TARGET_BOARD_IDENTIFIER "FY41"
+#else
+    #define TARGET_BOARD_IDENTIFIER "FY40"
+#endif
 #define USBD_PRODUCT_STRING "FlyYes!401"
 
 
@@ -59,50 +62,40 @@
 #define USE_I2C_DEVICE_2
 #define I2C2_SCL                PB10
 #define I2C2_SDA                PB3
-#define I2C_EXT_BUS BUS_I2C1
+#define I2C_EXT_BUS BUS_I2C2
 #define I2C_INT_BUS BUS_I2C1
 
 #define USE_BARO
+#ifdef FLYESF401_4IN1
+#define USE_BARO_BMP085
+#else
 #define USE_BARO_BMP280
+#endif
 #define BARO_I2C_BUS          I2C_INT_BUS
-
-// #define USE_I2C_DEVICE_2
-// #define I2C_DEVICE_2_SHARES_UART3
-// #define I2C_EXT_BUS BUS_I2C2
 
 // //试图使用USB MSC功能(默认已打开)
 // #define USE_USB_MSC
 // //使用开关切换，这个打不开
 // #define MSC_USE_BUTTON
 
-//#define UG2864_I2C_BUS I2C_EXT_BUS
+//#undef USE_USB_MSC          // 0.13% saved but can't access MSP over USB port.
+//#undef USE_SERVO_SBUS       // 0.48% saved 92.10%
+//#undef USE_SERIALRX_SBUS    // 0.12% saved 91.98%
+//#undef USE_SERIALRX_IBUS    // 0.32% saved 91.66%
+//#undef USE_SERIAL_RX        // unuseful 91.67%
+//#undef USE_TELEMETRY        // 0.16% saved 91.51%
 
-// // MPU6000 interrupts
-// #define USE_EXTI
-// #define GYRO_INT_EXTI            PC4
-// #define USE_MPU_DATA_READY_SIGNAL
+//#define NAV_NON_VOLATILE_WAYPOINT_STORAGE   // 0.05% reqire 91.56%
 
-// #define MPU6000_CS_PIN          PA4
-// #define MPU6000_SPI_BUS         BUS_SPI1
-
-// #define USE_IMU_MPU6000
-// #define IMU_MPU6000_ALIGN       CW180_DEG
-
-
-// // ICM20608 instead of MPU6000
-// #define MPU6500_CS_PIN          MPU6000_CS_PIN
-// #define MPU6500_SPI_BUS         MPU6000_SPI_BUS
-// #define USE_IMU_MPU6500
-// #define IMU_MPU6500_ALIGN       IMU_MPU6000_ALIGN
 
 #define USE_IMU_MPU6050
 #define IMU_MPU6050_ALIGN       CW180_DEG
 #define MPU6050_I2C_BUS         I2C_INT_BUS
 #define MPU_ADDRESS             0x68
 
-// MAG leave on EXT I2C BUS (I2C2)
+// MAG on INT I2C BUS (I2C2)
 #define USE_MAG
-#define MAG_I2C_BUS             I2C_EXT_BUS
+#define MAG_I2C_BUS             I2C_INT_BUS
 #define MAG_HMC5883_ALIGN       CW90_DEG
 #define USE_MAG_HMC5883
 #define USE_MAG_QMC5883
@@ -132,10 +125,7 @@
 
 // #define USE_UART_INVERTER
 
-#define FLYESF401_SS
-#define USE_SOFTSERIAL1
-#define SOFTSERIAL_1_RX_PIN     PA8     
-#define SOFTSERIAL_1_TX_PIN     PA8     
+   
 
 
 #define USE_UART1
@@ -143,13 +133,22 @@
 #define UART1_TX_PIN            PA9
 #define UART1_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
+
 #define USE_UART2
 #define UART2_RX_PIN            PA3
 #define UART2_TX_PIN            PA2
 //#define UART2_AHB1_PERIPHERALS  RCC_AHB1Periph_DMA2
 
-
+#ifdef FLYESF401_SS
+#define USE_SOFTSERIAL1
+#define SOFTSERIAL_1_RX_PIN     PA8     
+#define SOFTSERIAL_1_TX_PIN     PA8  
 #define SERIAL_PORT_COUNT       4       // VCP ， USART1, USART2, SS1
+#else
+#define SERIAL_PORT_COUNT       3       // VCP ， USART1, USART2
+#endif
+
+
 
 //PINIO TO SET TXS0108E
 #define USE_PINIO
@@ -157,47 +156,19 @@
 #define PINIO1_PIN              PA5
 #define PINIO1_HI_ON_BOOT
 
+#ifdef FLYESF401_SPI_OSD
+#define USE_SPI
+#define USE_SPI_DEVICE_1
+#define SPI1_SCK_PIN            PA5
+#define SPI1_MISO_PIN           PA6
+#define SPI1_MOSI_PIN           PA7
 
-// #define USE_SPI
+#define USE_OSD
+#define USE_MAX7456
+#define MAX7456_SPI_BUS         BUS_SPI1
+#define MAX7456_CS_PIN          PA15
+#endif
 
-// #define USE_SPI_DEVICE_1
-// #define SPI1_SCK_PIN            PA5
-// #define SPI1_MISO_PIN           PA6
-// #define SPI1_MOSI_PIN           PA7
-
-
-// // #define USE_SPI_DEVICE_3
-// // #if defined(OMNIBUSF4PRO) || defined(OMNIBUSF4V3)
-// //   #define SPI3_NSS_PIN          PA15
-// // #else
-// //   #define SPI3_NSS_PIN          PB3
-// // #endif
-// // #define SPI3_SCK_PIN            PC10
-// // #define SPI3_MISO_PIN           PC11
-// // #define SPI3_MOSI_PIN           PC12
-
-// // #define USE_OSD
-// // #define USE_MAX7456
-// // #define MAX7456_SPI_BUS         BUS_SPI3
-// // #define MAX7456_CS_PIN          PA15
-
-// // #if defined(OMNIBUSF4PRO) || defined(OMNIBUSF4V3)
-// //   #define ENABLE_BLACKBOX_LOGGING_ON_SDCARD_BY_DEFAULT
-// //   #define USE_SDCARD
-// //   #define USE_SDCARD_SPI
-
-// //   #define SDCARD_SPI_BUS        BUS_SPI2
-// //   #define SDCARD_CS_PIN         SPI2_NSS_PIN
-
-// //   #define SDCARD_DETECT_PIN     PB7
-// //   #define SDCARD_DETECT_INVERTED
-// // #else
-// //   #define ENABLE_BLACKBOX_LOGGING_ON_SPIFLASH_BY_DEFAULT
-// //   #define M25P16_CS_PIN           SPI3_NSS_PIN
-// //   #define M25P16_SPI_BUS          BUS_SPI3
-// //   #define USE_FLASHFS
-// //   #define USE_FLASH_M25P16
-// // #endif
 
 #define USE_ADC
 // #define ADC_CHANNEL_1_PIN               PA5
@@ -219,8 +190,8 @@
 #define WS2811_PIN                   PA1
 
 
-// #define DEFAULT_RX_TYPE         RX_TYPE_PPM
-// #define DISABLE_RX_PWM_FEATURE
+#define DEFAULT_RX_TYPE         RX_TYPE_PPM
+#define DISABLE_RX_PWM_FEATURE
 // #define DEFAULT_FEATURES        (FEATURE_TX_PROF_SEL  | FEATURE_VBAT )
 
 // // #define USE_SPEKTRUM_BIND
@@ -244,4 +215,4 @@
 // #define CURRENT_METER_SCALE   265
 // #endif
 
-#define PCA9685_I2C_BUS         I2C_EXT_BUS
+#define PCA9685_I2C_BUS         I2C_INT_BUS

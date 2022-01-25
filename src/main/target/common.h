@@ -29,10 +29,10 @@
 
 #define USE_RX_PPM
 #define USE_SERIAL_RX
-#define USE_SERIALRX_SPEKTRUM   // Cheap and fairly common protocol
+//#define USE_SERIALRX_SPEKTRUM   // Cheap and fairly common protocol
 #define USE_SERIALRX_SBUS       // Very common protocol
 #define USE_SERIALRX_IBUS       // Cheap FlySky & Turnigy receivers
-#define USE_SERIALRX_FPORT
+//#define USE_SERIALRX_FPORT
 
 #define COMMON_DEFAULT_FEATURES (FEATURE_TX_PROF_SEL)
 
@@ -55,7 +55,7 @@
 #define USE_BLACKBOX
 #endif
 #define USE_GPS
-#define USE_GPS_PROTO_UBLOX
+
 #define USE_NAV
 #define USE_TELEMETRY
 // #define USE_TELEMETRY_LTM
@@ -141,6 +141,9 @@
 #define USE_VTX_SMARTAUDIO
 #define USE_VTX_TRAMP
 #define USE_VTX_FFPV
+
+#define USE_GPS_PROTO_MTK
+#define USE_GPS_PROTO_UBLOX
 #else // FLASH_SIZE < 256
 #define LOG_LEVEL_MAXIMUM LOG_LEVEL_ERROR
 #endif
@@ -153,7 +156,6 @@
 #define NAV_MAX_WAYPOINTS       60
 
 #define USE_GPS_PROTO_NMEA
-#define USE_GPS_PROTO_MTK
 #define NAV_GPS_GLITCH_DETECTION
 #define NAV_FIXED_WING_LANDING
 
