@@ -124,6 +124,16 @@ static void pwmOutConfigTimer(pwmOutputPort_t * p, TCH_t * tch, uint32_t hz, uin
     *p->ccr = 0;
 }
 
+#ifdef USE_PWM_SERVO_DRIVER
+static void pwmServoWriteExternalDriver(uint8_t index, uint16_t value)
+{
+    // If PCA9685 is not detected, we do not want to write servo output anywhere
+    if (STATE(PWM_DRIVER_AVAILABLE)) {
+        pwmDriverSetPulse(index, value);
+    }
+}
+#endif
+
 static pwmOutputPort_t *pwmOutAllocatePort(void)
 {
     if (allocatedOutputPortCount >= MAX_PWM_OUTPUT_PORTS) {
@@ -421,6 +431,14 @@ void pwmMotorPreconfigure(void)
         case PWM_TYPE_MULTISHOT:
             motorWritePtr = pwmWriteStandard;
             break;
+#ifdef USE_PWM_SERVO_DRIVER
+        case PWM_TYPE_PCA9685:
+            //enable mapping motor pwm driver to external pwm driver
+            //motorWritePtr = pwmWriteStandard;
+            pwmDriverInitialize();
+            motorWritePtr = pwmServoWriteExternalDriver;
+            break;
+#endif
 
 #ifdef USE_DSHOT
         case PWM_TYPE_DSHOT1200:
@@ -462,6 +480,14 @@ bool pwmMotorConfig(const timerHardware_t *timerHardware, uint8_t motorIndex, bo
         motors[motorIndex].pwmPort = motorConfigPwm(timerHardware, 5e-6f, 20e-6f, motorConfig()->motorPwmRate, enableOutput);
         break;
 
+    //always init failed while boot.
+#ifdef USE_PWM_SERVO_DRIVER
+    case PWM_TYPE_PCA9685:
+        // pwmDriverInitialize();
+        // servoWritePtr = pwmServoWriteExternalDriver;
+        break;
+#endif
+
 #ifdef USE_DSHOT
     case PWM_TYPE_DSHOT1200:
     case PWM_TYPE_DSHOT600:
@@ -501,15 +527,7 @@ static void pwmServoWriteStandard(uint8_t index, uint16_t value)
     }
 }
 
-#ifdef USE_PWM_SERVO_DRIVER
-static void pwmServoWriteExternalDriver(uint8_t index, uint16_t value)
-{
-    // If PCA9685 is not detected, we do not want to write servo output anywhere
-    if (STATE(PWM_DRIVER_AVAILABLE)) {
-        pwmDriverSetPulse(index, value);
-    }
-}
-#endif
+
 
 void pwmServoPreconfigure(void)
 {

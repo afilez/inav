@@ -78,14 +78,16 @@
 // //使用开关切换，这个打不开
 // #define MSC_USE_BUTTON
 
+#define USE_DYNAMIC_FILTERS
+
 //#undef USE_USB_MSC          // 0.13% saved but can't access MSP over USB port.
-//#undef USE_SERVO_SBUS       // 0.48% saved 92.10%
+#undef USE_SERVO_SBUS       // 0.48% saved 92.10%
 //#undef USE_SERIALRX_SBUS    // 0.12% saved 91.98%
 //#undef USE_SERIALRX_IBUS    // 0.32% saved 91.66%
 //#undef USE_SERIAL_RX        // unuseful 91.67%
 //#undef USE_TELEMETRY        // 0.16% saved 91.51%
 
-//#define NAV_NON_VOLATILE_WAYPOINT_STORAGE   // 0.05% reqire 91.56%
+#define NAV_NON_VOLATILE_WAYPOINT_STORAGE   // 0.05% reqire 91.56%
 
 
 #define USE_IMU_MPU6050

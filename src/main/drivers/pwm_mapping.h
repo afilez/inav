@@ -38,6 +38,7 @@
 
 typedef enum {
     PWM_TYPE_STANDARD = 0,
+    PWM_TYPE_PCA9685,
     PWM_TYPE_ONESHOT125,
     PWM_TYPE_ONESHOT42,
     PWM_TYPE_MULTISHOT,
@@ -46,7 +47,7 @@ typedef enum {
     PWM_TYPE_DSHOT300,
     PWM_TYPE_DSHOT600,
     PWM_TYPE_DSHOT1200,
-    PWM_TYPE_SERIALSHOT,
+    PWM_TYPE_SERIALSHOT
 } motorPwmProtocolTypes_e;
 
 typedef enum {
