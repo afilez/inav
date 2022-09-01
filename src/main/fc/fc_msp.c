@@ -377,7 +377,7 @@ static bool mspFcProcessOutCommand(uint16_t cmdMSP, sbuf_t *dst, mspPostProcessF
 #ifdef USE_VCP
         commCapabilities |= 1 << 0;
 #endif
-#if defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2)
+#if defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2) || defined(USE_SOFTSERIAL3)
         commCapabilities |= 1 << 1;
 #endif
         sbufWriteU8(dst, commCapabilities);

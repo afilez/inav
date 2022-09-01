@@ -27,6 +27,7 @@ SECTIONS
     . = ALIGN(4);
     PROVIDE (isr_vector_table_base = .);
     KEEP(*(.isr_vector)) /* Startup code */
+        *(.rodata)         /* .rodata sections (constants, strings, etc.) */
     . = ALIGN(4);
   } >FLASH
 
@@ -37,7 +38,6 @@ SECTIONS
     *(.text)           /* .text sections (code) */
     *(.text*)          /* .text* sections (code) */
     *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
-    *(.rodata)         /* .rodata sections (constants, strings, etc.) */
     *(.glue_7)         /* glue arm to thumb code */
     *(.glue_7t)        /* glue thumb to arm code */
     *(.eh_frame)

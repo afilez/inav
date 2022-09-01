@@ -28,4 +28,4 @@ MEMORY
 REGION_ALIAS("STACKRAM", RAM)
 REGION_ALIAS("FASTRAM", RAM)
 
-INCLUDE "stm32_flash_split.ld"
+INCLUDE "stm32_flash_split_f401.ld"

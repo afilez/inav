@@ -149,6 +149,12 @@ static bool commandBatchActive = false;
 static bool commandBatchError = false;
 #endif
 
+#ifdef USE_GPS
+#include "io/gps_private.h"
+extern gpsStatistics_t   gpsStats;
+extern gpsReceiverData_t gpsState;
+#endif
+
 // sync this with features_e
 static const char * const featureNames[] = {
     "THR_VBAT_COMP", "VBAT", "TX_PROF_SEL", "BAT_PROF_AUTOSWITCH", "MOTOR_STOP",
@@ -3008,37 +3014,37 @@ static void cliStatus(char *cmdline)
     cliPrintLinef("Current Time: %s", buf);
     cliPrintLinef("Voltage: %d.%02dV (%dS battery - %s)", getBatteryVoltage() / 100, getBatteryVoltage() % 100, getBatteryCellCount(), getBatteryStateString());
 
-    #ifdef USE_PWM_SERVO_DRIVER
-        cliPrintLinef ("Supported PCA9685 external I2C PWM driver");
-        // Protocol-specific configuration
-        switch (servoConfig()->servo_protocol) {
-            default:
-                cliPrintLinef ("PCA9685 external I2C PWM driver not configed");
-                break;
+    // #ifdef USE_PWM_SERVO_DRIVER
+    //     cliPrintLinef ("Supported PCA9685 external I2C PWM driver");
+    //     // Protocol-specific configuration
+    //     switch (servoConfig()->servo_protocol) {
+    //         default:
+    //             cliPrintLinef ("PCA9685 external I2C PWM driver not configed");
+    //             break;
 
-            case SERVO_TYPE_SERVO_DRIVER:
-                #ifdef USE_PWM_SERVO_DRIVER
-                    cliPrintLinef ("Using PCA9685 external I2C PWM driver.");
-                    if ((int)isPwmDriverInited())
-                        cliPrintLinef ("PCA9685 external I2C PWM driver inited");
-                    else
-                        cliPrintLinef ("PCA9685 external I2C PWM driver not init yet");
-                    if ((int)isPwmDriverEnabled()) {
-                        cliPrintLinef ("PCA9685 external I2C PWM driver enabled");
-                        if (!STATE(PWM_DRIVER_AVAILABLE)) 
-                            cliPrintLinef ("PCA9685 external I2C PWM driver unavailable");
-                        else
-                            cliPrintLinef ("PCA9685 external I2C PWM driver available");
-                    }
-                    else {
-                        cliPrintLinef ("PCA9685 external I2C PWM driver disabled");
-                    }                
-                #endif
-                break;
-        }
-    #else
-        cliPrintLinef ("PCA9685 external I2C PWM driver not supported");
-    #endif
+    //         case SERVO_TYPE_SERVO_DRIVER:
+    //             #ifdef USE_PWM_SERVO_DRIVER
+    //                 cliPrintLinef ("Using PCA9685 external I2C PWM driver.");
+    //                 if ((int)isPwmDriverInited())
+    //                     cliPrintLinef ("PCA9685 external I2C PWM driver inited");
+    //                 else
+    //                     cliPrintLinef ("PCA9685 external I2C PWM driver not init yet");
+    //                 if ((int)isPwmDriverEnabled()) {
+    //                     cliPrintLinef ("PCA9685 external I2C PWM driver enabled");
+    //                     if (!STATE(PWM_DRIVER_AVAILABLE)) 
+    //                         cliPrintLinef ("PCA9685 external I2C PWM driver unavailable");
+    //                     else
+    //                         cliPrintLinef ("PCA9685 external I2C PWM driver available");
+    //                 }
+    //                 else {
+    //                     cliPrintLinef ("PCA9685 external I2C PWM driver disabled");
+    //                 }                
+    //             #endif
+    //             break;
+    //     }
+    // #else
+    //     cliPrintLinef ("PCA9685 external I2C PWM driver not supported");
+    // #endif
 
     cliPrintf("CPU Clock=%dMHz", (SystemCoreClock / 1000000));
     const uint32_t detectedSensorsMask = sensorsMask();
@@ -3088,6 +3094,12 @@ static void cliStatus(char *cmdline)
         hardwareSensorStatusNames[getHwOpticalFlowStatus()],
         hardwareSensorStatusNames[getHwGPSStatus()]
     );
+
+    // cliPrintLinef("gps status: timeouts=%d, erros=%d, packets=%d",
+    //     gpsStats.timeouts, gpsStats.errors, gpsStats.packetCount);
+
+    // cliPrintLinef("gps status: hwVersion=%d, state=%d",
+    //     gpsState.hwVersion, gpsState.state);
 
 
 #ifdef USE_SDCARD

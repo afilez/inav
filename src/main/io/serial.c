@@ -32,7 +32,7 @@
 #include "drivers/system.h"
 #include "drivers/time.h"
 #include "drivers/serial.h"
-#if defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2)
+#if defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2) || defined(USE_SOFTSERIAL3)
 #include "drivers/serial_softserial.h"
 #endif
 
@@ -91,6 +91,9 @@ const serialPortIdentifier_e serialPortIdentifiers[SERIAL_PORT_COUNT] = {
 #endif
 #ifdef USE_SOFTSERIAL2
     SERIAL_PORT_SOFTSERIAL2,
+#endif
+#ifdef USE_SOFTSERIAL3
+    SERIAL_PORT_SOFTSERIAL3,
 #endif
 };
 
@@ -336,7 +339,7 @@ serialPort_t *openSerialPort(
     portMode_t mode,
     portOptions_t options)
 {
-#if (!defined(USE_VCP) && !defined(USE_UART1) && !defined(USE_UART2) && !defined(USE_UART3) && !defined(USE_SOFTSERIAL1) && !defined(USE_SOFTSERIAL2))
+#if (!defined(USE_VCP) && !defined(USE_UART1) && !defined(USE_UART2) && !defined(USE_UART3) && !defined(USE_SOFTSERIAL1) && !defined(USE_SOFTSERIAL2) && !defined(USE_SOFTSERIAL3))
     UNUSED(rxCallback);
     UNUSED(rxCallbackData);
     UNUSED(baudRate);
@@ -408,6 +411,11 @@ serialPort_t *openSerialPort(
             serialPort = openSoftSerial(SOFTSERIAL2, rxCallback, rxCallbackData, baudRate, mode, options);
             break;
 #endif
+#ifdef USE_SOFTSERIAL3
+        case SERIAL_PORT_SOFTSERIAL3:
+            serialPort = openSoftSerial(SOFTSERIAL3, rxCallback, rxCallbackData, baudRate, mode, options);
+            break;
+#endif
         default:
             break;
     }
@@ -463,6 +471,9 @@ void serialInit(bool softserialEnabled, serialPortIdentifier_e serialPortToDisab
 #endif
 #ifdef USE_SOFTSERIAL2
                 || serialPortUsageList[index].identifier == SERIAL_PORT_SOFTSERIAL2
+#endif
+#ifdef USE_SOFTSERIAL3
+                || serialPortUsageList[index].identifier == SERIAL_PORT_SOFTSERIAL3
 #endif
             ) {
                 serialPortUsageList[index].identifier = SERIAL_PORT_NONE;

@@ -167,6 +167,16 @@ static bool checkPwmTimerConflicts(const timerHardware_t *timHw)
     }
 #endif
 
+#if defined(USE_SOFTSERIAL3)
+    if (feature(FEATURE_SOFTSERIAL)) {
+        const timerHardware_t *ssrx = timerGetByTag(IO_TAG(SOFTSERIAL_3_RX_PIN), TIM_USE_ANY);
+        const timerHardware_t *sstx = timerGetByTag(IO_TAG(SOFTSERIAL_3_TX_PIN), TIM_USE_ANY);
+        if ((ssrx != NULL && ssrx->tim == timHw->tim) || (sstx != NULL && sstx->tim == timHw->tim)) {
+            return true;
+        }
+    }
+#endif
+
 #if defined(USE_LED_STRIP)
     if (feature(FEATURE_LED_STRIP)) {
         const timerHardware_t * ledTimHw = timerGetByTag(IO_TAG(WS2811_PIN), TIM_USE_ANY);

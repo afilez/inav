@@ -190,7 +190,7 @@ void validateAndFixConfig(void)
 #endif
 
 
-#if defined(USE_LED_STRIP) && (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2))
+#if defined(USE_LED_STRIP) && (defined(USE_SOFTSERIAL1) || defined(USE_SOFTSERIAL2) ||defined(USE_SOFTSERIAL3))
     if (featureConfigured(FEATURE_SOFTSERIAL) && featureConfigured(FEATURE_LED_STRIP)) {
         const timerHardware_t *ledTimerHardware = timerGetByTag(IO_TAG(WS2811_PIN), TIM_USE_ANY);
         if (ledTimerHardware != NULL) {
@@ -204,6 +204,12 @@ void validateAndFixConfig(void)
 #endif
 #if defined(USE_SOFTSERIAL2)
             const timerHardware_t *ss2TimerHardware = timerGetByTag(IO_TAG(SOFTSERIAL_2_RX_PIN), TIM_USE_ANY);
+            if (ss2TimerHardware != NULL && ss2TimerHardware->tim == ledTimerHardware->tim) {
+                sameTimerUsed = true;
+            }
+#endif
+#if defined(USE_SOFTSERIAL3)
+            const timerHardware_t *ss2TimerHardware = timerGetByTag(IO_TAG(SOFTSERIAL_3_RX_PIN), TIM_USE_ANY);
             if (ss2TimerHardware != NULL && ss2TimerHardware->tim == ledTimerHardware->tim) {
                 sameTimerUsed = true;
             }
